@@ -37,9 +37,9 @@ public class WeatherListAdapter extends RecyclerView.Adapter<WeatherListAdapter.
     public void onBindViewHolder(WeatherViewHolder holder, int position) {
         Weather weather = mList.get(position);
 
-        // \u2103 is degree symbol
+        // \u00B0 is degree symbol
         String temp = MathUtil.getNoDecimal(weather.getTemperature()) + "\u00B0";
-        String windSpeed = "Wind "+MathUtil.getNoDecimal(weather.getWindSpeed()) +" m/s";
+        String windSpeed = "Wind "+ MathUtil.getNoDecimal(weather.getWindSpeed()) +" m/s";
 
         holder.mTvCity.setText(weather.getCityName());
         holder.mTvTemp.setText(temp);

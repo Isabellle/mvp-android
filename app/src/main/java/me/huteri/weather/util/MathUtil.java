@@ -5,6 +5,13 @@ import java.text.DecimalFormat;
 
 public class MathUtil {
 
+    /**
+     * Return a number with no decimal, it means the number will be rounded to the nearest one.
+     * As an example, 2.3 will return 2, and 2.8 will return 3.
+     *
+     * @param temp
+     * @return
+     */
     public static String getNoDecimal(float temp) {
 
         BigDecimal bigDecimal = new BigDecimal(String.valueOf(temp));

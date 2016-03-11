@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,14 +50,14 @@ public class WeatherApiImpl implements WeatherApi {
                     content.append(line);
                 }
 
-                JSONObject jsonObject = new JSONObject(content.toString());
-
-                JSONArray list = jsonObject.getJSONArray("list");
+                JSONArray list = new JSONObject(content.toString()).getJSONArray("list");
 
                 List<Weather> weathers = new ArrayList<>();
 
+                JSONObject object;
+
                 for (int i = 0; i < list.length(); i++) {
-                    JSONObject object = list.getJSONObject(i);
+                    object = list.getJSONObject(i);
 
                     float temp = BigDecimal.valueOf(object.getJSONObject("main").getDouble("temp")).floatValue();
                     float windSpeed = BigDecimal.valueOf(object.getJSONObject("wind").getDouble("speed")).floatValue();
@@ -68,11 +67,7 @@ public class WeatherApiImpl implements WeatherApi {
 
                 return weathers;
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
             return null;
