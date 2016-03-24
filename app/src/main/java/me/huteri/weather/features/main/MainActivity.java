@@ -1,6 +1,7 @@
 package me.huteri.weather.features.main;
 
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,11 +15,13 @@ import me.huteri.weather.R;
 import me.huteri.weather.features.BaseActivity;
 import me.huteri.weather.features.adapter.WeatherListAdapter;
 import me.huteri.weather.model.Weather;
+import me.huteri.weather.model.service.WeatherApiImpl;
 
 
 public class MainActivity extends BaseActivity implements MainView, WeatherListAdapter.WeatherItemListener {
 
     private MainPresenterImpl mPresenter;
+
     private WeatherListAdapter mWeatherListAdapter;
     private SwipeRefreshLayout mSrl;
 
@@ -27,7 +30,7 @@ public class MainActivity extends BaseActivity implements MainView, WeatherListA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mPresenter = new MainPresenterImpl(this);
+        mPresenter = new MainPresenterImpl(this, new WeatherApiImpl());
 
         initRecyclerView();
         initSwipeRefreshLayout();
