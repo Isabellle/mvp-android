@@ -6,7 +6,7 @@ I use mockito and espresso though for unit and ui testing because it is the only
 
 The sample of clean archictecture as follows
 
-![Image](http://fernandocejas.com/-content/uploads/2014/09/clean_architecture1.png)
+![Image](http://fernandocejas.com/wp-content/uploads/2014/09/clean_architecture1.png)
 
 The core principle is the outer layer such as view should not know the inner layer.
 
